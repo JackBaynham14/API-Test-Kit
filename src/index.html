@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Test Kit</title>
+        <link rel="icon" href="icon.png">
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <h2>API Testing Website</h2>
+        Method:
+        <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+        </select> 
+        URL:
+        api/<input type="text" id="url" value="">
+        <p>Body:</p>
+        <textarea id="body" style="width: 500px" rows="10"></textarea>
+        <br>
+        <input type="submit" onclick="submit()">
+        <p>Output:</p>
+        <div id="output" style="border: 1px solid black; width: 500px"></div>
+    </body>
+</html>
