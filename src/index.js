@@ -1,51 +1,52 @@
+const output = document.getElementById("output");
+
 function submit() {
     // Handle and route submit press to proper method function
     const method = document.getElementById("method").value;
+    const url = window.location + "api/" + document.getElementById("url").value;
+    const body = document.getElementById("body").value;
+
     switch(method) {
         case "GET": {
-            httpGet();
-            break;
-        } case "POST": {
-            httpPost();
+            httpGet(url);
             break;
         } case "PUT": {
-            httpPut();
+            httpPut(url, body);
             break;
         } case "DELETE": {
-            httpDelete();
+            httpDelete(url, body);
             break;
         }
     }
 }
 
-function httpGet() {
+function httpGet(url) {
     // Send a get request
-    const url = document.getElementById("url").value;
-    fetch(window.location + "api/" + url, {
-        method: "GET",
-        headers: {
-            "content-type": "string"
-        }
+    fetch(url, {
+        method: "GET"
     }).then(resp => {
         return resp.text()
     }).then(text => {
-        document.getElementById("output").innerHTML = text;
+        output.innerHTML = text;
     }).catch(err => {
         console.log(err);
     });
 }
 
-function httpPost() {
-    // Send a post request
-    console.log("POST");
-}
-
-function httpPut() {
+function httpPut(url, body) {
     // Send a put request
-    console.log("PUT");
+    body = JSON.stringify(body);
+    fetch(url, {
+        method: "PUT",
+        body: body
+    }).then(resp => {
+        return resp.text();
+    }).then(text => {
+        output.innerHTML = text;
+    })
 }
 
-function httpDelete() {
+function httpDelete(url, body) {
     // Senda delete request
     console.log("DELETE");
 }
