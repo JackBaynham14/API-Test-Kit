@@ -1,4 +1,5 @@
 const output = document.getElementById("output");
+const status = document.getElementById("status");
 
 function submit() {
     // Handle and route submit press to proper method function
@@ -25,6 +26,7 @@ function httpGet(url) {
     fetch(url, {
         method: "GET"
     }).then(resp => {
+        status.innerHTML = resp.status;
         return resp.text()
     }).then(text => {
         output.innerHTML = text;
