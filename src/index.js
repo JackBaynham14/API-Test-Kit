@@ -11,6 +11,9 @@ function submit() {
         case "GET": {
             httpGet(url);
             break;
+        } case "POST": {
+            httpPost(url);
+            break;
         } case "PUT": {
             httpPut(url, body);
             break;
@@ -33,6 +36,19 @@ function httpGet(url) {
     }).catch(err => {
         console.log(err);
     });
+}
+
+function httpPost(url, body) {
+    // Send a put request
+    body = JSON.stringify(body);
+    fetch(url, {
+        method: "POST",
+        body: body
+    }).then(resp => {
+        return resp.text();
+    }).then(text => {
+        output.innerHTML = text;
+    })
 }
 
 function httpPut(url, body) {
