@@ -29,6 +29,11 @@ function httpGet(url) {
     fetch(url, {
         method: "GET"
     }).then(resp => {
+        if (!resp.ok) {
+            status.innerHTML = resp.status;
+            throw Error(resp.statusText);
+        }
+        console.log('Test')
         status.innerHTML = resp.status;
         return resp.text()
     }).then(text => {
@@ -45,10 +50,16 @@ function httpPost(url, body) {
         body: body,
         headers: {"Content-Type": "application/json"}
     }).then(resp => {
+        if (!resp.ok) {
+            status.innerHTML = resp.status;
+            throw Error(resp.statusText);
+        }
         return resp.text();
     }).then(text => {
         output.innerHTML = text;
-    })
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 function httpPut(url, body) {
@@ -58,10 +69,16 @@ function httpPut(url, body) {
         body: body,
         headers: {"Content-Type": "application/json"}
     }).then(resp => {
+        if (!resp.ok) {
+            status.innerHTML = resp.status;
+            throw Error(resp.statusText);
+        }
         return resp.text();
     }).then(text => {
         output.innerHTML = text;
-    })
+    }).catch(err => {
+        console.log(err);
+    });
 }
 
 function httpDelete(url, body) {
