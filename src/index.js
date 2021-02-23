@@ -40,7 +40,6 @@ function httpGet(url) {
 
 function httpPost(url, body) {
     // Send a put request
-    console.log(body);
     fetch(url, {
         method: "POST",
         body: body,
