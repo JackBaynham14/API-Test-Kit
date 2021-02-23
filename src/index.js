@@ -29,11 +29,6 @@ function httpGet(url) {
     fetch(url, {
         method: "GET"
     }).then(resp => {
-        if (!resp.ok) {
-            status.innerHTML = resp.status;
-            throw Error(resp.statusText);
-        }
-        console.log('Test')
         status.innerHTML = resp.status;
         return resp.text()
     }).then(text => {
@@ -50,10 +45,7 @@ function httpPost(url, body) {
         body: body,
         headers: {"Content-Type": "application/json"}
     }).then(resp => {
-        if (!resp.ok) {
-            status.innerHTML = resp.status;
-            throw Error(resp.statusText);
-        }
+        status.innerHTML = resp.status;
         return resp.text();
     }).then(text => {
         output.innerHTML = text;
@@ -69,10 +61,7 @@ function httpPut(url, body) {
         body: body,
         headers: {"Content-Type": "application/json"}
     }).then(resp => {
-        if (!resp.ok) {
-            status.innerHTML = resp.status;
-            throw Error(resp.statusText);
-        }
+        status.innerHTML = resp.status;
         return resp.text();
     }).then(text => {
         output.innerHTML = text;
