@@ -57,7 +57,7 @@ function httpPut(url, body) {
     fetch(url, {
         method: "PUT",
         body: body,
-        "Content-Type": "application/json"
+        headers: {"Content-Type": "application/json"}
     }).then(resp => {
         return resp.text();
     }).then(text => {
