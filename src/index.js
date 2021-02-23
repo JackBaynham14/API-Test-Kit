@@ -5,14 +5,14 @@ function submit() {
     // Handle and route submit press to proper method function
     const method = document.getElementById("method").value;
     const url = window.location + "api/" + document.getElementById("url").value;
-    const body = document.getElementById("body").value;
-
+    let body = document.getElementById("body").value;
+    
     switch(method) {
         case "GET": {
             httpGet(url);
             break;
         } case "POST": {
-            httpPost(url);
+            httpPost(url, body);
             break;
         } case "PUT": {
             httpPut(url, body);
@@ -40,10 +40,11 @@ function httpGet(url) {
 
 function httpPost(url, body) {
     // Send a put request
-    body = JSON.stringify(body);
+    console.log(body);
     fetch(url, {
         method: "POST",
-        body: body
+        body: body,
+        headers: {"Content-Type": "application/json"}
     }).then(resp => {
         return resp.text();
     }).then(text => {
@@ -53,10 +54,10 @@ function httpPost(url, body) {
 
 function httpPut(url, body) {
     // Send a put request
-    body = JSON.stringify(body);
     fetch(url, {
         method: "PUT",
-        body: body
+        body: body,
+        "Content-Type": "application/json"
     }).then(resp => {
         return resp.text();
     }).then(text => {

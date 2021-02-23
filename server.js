@@ -12,17 +12,22 @@ server.use(express.static('src'));
 // Define API router
 const api = express.Router()
 
-api.use(express.json());
 api.use(express.urlencoded());
+api.use(express.json());
 
 api.get("", (req, res) => {
     res.send({head:"Sucessful GET request!"});
 });
 
+api.post("", (req, res) => {
+    console.log(req.body);
+    res.send({head:"Successful POST request", body:req.body});
+});
+
 api.put("", (req, res) => {
     console.log(req.body);
-    res.send({head:"Successful PUT request!",body:req.body});
-})
+    res.send({head:"Successful PUT request!", body:req.body});
+});
 
 server.use("/api", api);
 
