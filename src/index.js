@@ -71,6 +71,15 @@ function httpPut(url, body) {
 }
 
 function httpDelete(url, body) {
-    // Senda delete request
-    console.log("DELETE");
+    // Send a delete request
+    fetch(url, {
+        method: "DELETE"
+    }).then(resp => {
+        status.innerHTML = resp.status;
+        return resp.text();
+    }).then(text => {
+        output.innerHTML = text;
+    }).catch(err => {
+        console.log(err);
+    });
 }
